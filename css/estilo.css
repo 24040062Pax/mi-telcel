@@ -1,0 +1,344 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #6B3F69;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.navbar-logo h1 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.btn-portafolio {
+    color: white;
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.btn-portafolio:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    gap: 2rem;
+}
+
+/* Panel de imagen */
+.image-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-panel img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.placeholder-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 1.2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.placeholder-image i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: #6B3F69;
+}
+
+.decoracion-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+/* Panel del formulario */
+.form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cards de formulario */
+.form-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-card h2 {
+    color: #6B3F69;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #6B3F69;
+    box-shadow: 0 0 0 2px rgba(107, 63, 105, 0.2);
+}
+
+/* Botones */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #6B3F69;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #5a3360;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #6B3F69;
+    border: 1px solid #6B3F69;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(107, 63, 105, 0.1);
+}
+
+/* Mensajes */
+.message {
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Sección de información */
+.info-section {
+    padding: 3rem 2rem;
+    background-color: #f8f9fa;
+}
+
+.info-section h2 {
+    text-align: center;
+    color: #6B3F69;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.info-card h3 {
+    color: #6B3F69;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.info-card p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.info-card i {
+    font-size: 2.5rem;
+    color: #6B3F69;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #6B3F69;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .image-panel {
+        min-height: 300px;
+    }
+    
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar-logo h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .form-card {
+        padding: 1.5rem;
+    }
+    
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
