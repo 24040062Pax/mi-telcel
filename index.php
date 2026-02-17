@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <img src="img/logo.png" alt="Logo Mi Telcel">
             <h1> Mi Telcel</h1>
         </div>
-        <a href="portafolio.php" class="btn-portafolio">Regresar al Portafolio</a>
+        <a href="https://24040062pax.github.io/portafolio-fw/" class="btn-portafolio">Volver al Portafolio</a>
     </nav>
 
     <!-- Contenedor principal -->
@@ -145,3 +145,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 </body>
 </html>
+
