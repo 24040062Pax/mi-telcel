@@ -4,7 +4,7 @@ require_once 'config/database.php';
 
 // Verificar si ya hay una sesión activa
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: dashboard.php'); // Redirigir a dashboard 
+    header('Location: dashboard.php');
     exit();
 }
 
@@ -15,32 +15,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasena = $_POST['contrasena'];
     
     if (!empty($celular) && !empty($contrasena)) {
-        $conexion = conectarDB();
-        
-        // Buscar usuario por celular
-        $stmt = $conexion->prepare("SELECT id, nombre, contraseña FROM usuarios WHERE celular = ?");
-        $stmt->bind_param("s", $celular);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        
-        if ($resultado->num_rows === 1) {
-            $usuario = $resultado->fetch_assoc();
+        try {
+            $conexion = conectarDB();
             
-            // Verificar contraseña
-            if (password_verify($contrasena, $usuario['contraseña'])) {
-                $_SESSION['usuario_id'] = $usuario['id'];
-                $_SESSION['usuario_nombre'] = $usuario['nombre'];
-                
-                $mensaje = "Inicio de sesión exitoso. Bienvenido " . $usuario['nombre'];
+            // Buscar usuario por celular 
+            $stmt = $conexion->prepare("SELECT id, nombre, contraseña FROM usuarios WHERE celular = ?");
+            $stmt->execute([$celular]);
+            $usuario = $stmt->fetch();
+            
+            if ($usuario) {
+                // Verificar contraseña
+                if (password_verify($contrasena, $usuario['contraseña'])) {
+                    $_SESSION['usuario_id'] = $usuario['id'];
+                    $_SESSION['usuario_nombre'] = $usuario['nombre'];
+                    
+                    header('Location: dashboard.php');
+                    exit();
+                } else {
+                    $error = "Contraseña incorrecta";
+                }
             } else {
-                $error = "Contraseña incorrecta";
+                $error = "No existe un usuario con ese número de celular";
             }
-        } else {
-            $error = "No existe un usuario con ese número de celular";
+            
+        } catch (PDOException $e) {
+            error_log("Error en login: " . $e->getMessage());
+            $error = "Error en el sistema. Por favor, intente más tarde.";
         }
-        
-        $stmt->close();
-        $conexion->close();
     } else {
         $error = "Por favor, completa todos los campos";
     }
@@ -84,12 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if (!empty($error)): ?>
                     <div class="message error">
                         <?php echo htmlspecialchars($error); ?>
-                    </div>
-                <?php endif; ?>
-                
-                <?php if (isset($mensaje)): ?>
-                    <div class="message success">
-                        <?php echo htmlspecialchars($mensaje); ?>
                     </div>
                 <?php endif; ?>
                 
